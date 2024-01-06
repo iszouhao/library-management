@@ -1,0 +1,9 @@
+body{
+    margin: 0; /* 将body元素的上下左右边距都设置为0 */
+    padding: 0; /* 将body元素的上下左右内边距都设置为0 */
+    background-color: #ccc; /* 将body元素的背景颜色设置为灰色 */
+}
+
+*{
+    box-sizing: border-box; /* 所有元素的盒模型大小包括边框大小和内边距 */
+}
