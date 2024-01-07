@@ -3,7 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.springboot.mapper.UserMapper">
-    <select id="listUser" resultType="org.example.springboot.entity.User">
+    <select id="list" resultType="org.example.springboot.entity.User">
         select * from user
+    </select>
+    <!--如果你的关键字是 "John"，那么在 SQL 查询语句中，CONCAT('%',#{name},'%') 会被替换为 '%John%'。-->
+    <select id="listByCondition" resultType="org.example.springboot.entity.User">
+      select * from user
+          <where>
+              <if test="name!= null and name!= ''" >
+                  name like concat('%',#{name},'%')
+              </if>
+              <if test="phone!= null and phone!= ''">
+                  phone like concat('%',#{phone},'%')
+              </if>
+          </where>
     </select>
 </mapper>
