@@ -10,7 +10,8 @@
       <!-- 侧边栏导航 -->
       <div style="width:200px;min-height:calc(100vh - 62px);overflow: hidden;margin-right: 2px; background-color: white">
         <!-- 定义一个宽度为200px，最小高度为视口高度减去62px的div，溢出隐藏，右侧边距为2px，背景颜色为白色 -->
-        <el-menu :default-active="$route.path" :default-openeds="['/']" router class="el-menu-demo">
+        <el-menu :default-active="$route.path ==='/' ?$route.path :
+         $route.path.substring(1)" :default-openeds="['/']" router class="el-menu-demo">
           <!-- 使用el-menu组件，设置默认激活的路径为$route.path，设置默认展开的路径为‘/’，设置为路由菜单，添加类名"el-menu-demo" -->
           <el-menu-item index="/">
             <!-- 使用el-menu-item组件，设置索引为‘/’ -->
@@ -25,18 +26,22 @@
               <!-- 使用template标签，并设置slot为'title' -->
               <i class="el-icon-info"></i>
               <!-- 添加一个el-icon-info图标 -->
-              <span>关于页面</span>
-              <!-- 添加一个span标签，内容为"关于页面" -->
+              <span>会员管理</span>
+              <!-- 添加一个span标签，内容为"会员管理" -->
             </template>
-            <el-menu-item index="about">关于详情</el-menu-item>
-            <!-- 使用el-menu-item组件，设置索引为"about"，内容为"关于详情" -->
+            <el-menu-item index="addUser">会员添加</el-menu-item>
+            <el-menu-item index="user">会员列表</el-menu-item>
           </el-submenu>
         </el-menu>
       </div>
 
 
       <!-- 主体数据 -->
+
       <div style="flex: 1; background-color: white; padding: 10px">
+        <!-- router-view是Vue Router提供的一个组件，用于在Vue应用中渲染对应路由的组件。当用户请求一个URL时，
+        Vue Router会根据配置的路由规则来确定应该渲染哪个组件，然后将该组件渲染到router-view的位置上。
+        这样就可以实现单页应用中页面的切换效果。 -->
         <router-view/>
       </div>
     </div>
@@ -44,4 +49,15 @@
   </div>
 </template>
 <script>
+import router from "@/router";
+import {defineComponent} from "vue";
+
+export default defineComponent({
+  methods: {
+    router() {
+      return router
+    }
+  }
+})
+
 </script>
